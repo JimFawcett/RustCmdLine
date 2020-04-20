@@ -20,16 +20,19 @@ pub fn show_cmd_line() {
     }
 }
 
+type Options = HashMap<char, String>;
+type CmdLinePatterns = Vec<String>;
+
 #[derive(Debug)]
 pub struct CmdLineParse {
-    opt_map : HashMap<char, String>,
-    patterns : Vec<String>,
+    opt_map : Options,
+    patterns : CmdLinePatterns,
 }
 impl CmdLineParse {
     pub fn new() -> Self {
         Self {
-            opt_map: HashMap::<char, String>::new(),
-            patterns: Vec::<String>::new(),
+            opt_map: Options::new(),
+            patterns: CmdLinePatterns::new(),
         }
     }
 
@@ -39,7 +42,7 @@ impl CmdLineParse {
     }
     
     pub fn parse(&self) {
-        let mut _opt_map:HashMap<char, String> = HashMap::new();
+        let mut _opt_map:Options = Options::new();
     
         let cl_args:Vec<String> = args().collect();
         let end = cl_args.len();
