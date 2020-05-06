@@ -8,10 +8,8 @@ use rust_cmd_line::*;
 
 fn main() {
 
-    let println = || print!("\n");
     print!("\n  Command line arguments:");
     show_cmd_line();
-    println();
 
     let mut parser = CmdLineParse::new();
     // let mut parser = CmdLineParse::default();

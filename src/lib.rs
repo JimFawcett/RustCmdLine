@@ -31,10 +31,14 @@ use std::fs::*;
 // new() -> CmdLineParse
 // parse(&self)
 // contains_option(&self, opt: char) -> bool
-// value(&self, char opt) -> &String
+// value(&self, char opt) -> &str
 // options(&self) -> &HashMap<char, String>
+// path(&self) -> String
+// abs_path(&self) -> String
 // patterns(&self) -> &Vec<String>
-// add_pattern(&self, p:&str)
+// add_pattern(&mut self, p:&str)
+// help(&self) -> String
+// replace_help(&mut self, &str) -> String
 
 pub fn show_cmd_line() {
     print!("\n  {:?}\n  ", args().next());
@@ -135,13 +139,12 @@ impl CmdLineParse {
     
         let cl_args:Vec<String> = args().collect();
         let end = cl_args.len();
-        // print!("\n  number of cl args: {:?}",end);
         for i in 1..end {
             // print!("\n  line number: {}", i);
             // print!("\n  {:?} is opt {:?}", cl_args[i], self.is_opt(&cl_args[i]));
-            if i < end - 2 {
-                // print!(", next arg is {:?}", cl_args[i+1]);
-            }
+            // if i < end - 2 {
+            //     print!(", next arg is {:?}", cl_args[i+1]);
+            // }
             if self.is_opt(&cl_args[i]) {
                 let bytes = cl_args[i].as_bytes();
                 let key = bytes[1] as char;
