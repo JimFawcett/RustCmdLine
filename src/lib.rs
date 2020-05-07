@@ -37,7 +37,7 @@ use std::fs::*;
 // abs_path(&self) -> String
 // set_path(&self, p:&str)
 // patterns(&self) -> &Vec<String>
-// add_pattern(&mut self, p:&str)
+// add_pattern(&mut self, p:&str) -> &mut self
 // help(&self) -> String
 // replace_help(&mut self, &str) -> String
 
@@ -122,8 +122,9 @@ impl CmdLineParse {
         &self.opt_map[&opt]
     }
 
-    pub fn add_pattern(&mut self, p:&str) {
+    pub fn add_pattern(&mut self, p:&str) -> &mut Self {
         self.patterns.push(p.to_string());
+        self
     }
 
     pub fn patterns(&self) -> &CmdLinePatterns {
