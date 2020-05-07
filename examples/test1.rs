@@ -17,6 +17,10 @@ fn main() {
     parser.parse();
     print!("\n  path     = {:?}", parser.path());
     print!("\n  abspath  = {:?}", parser.abs_path());
+    let new_path = "C:/github/foo";
+    parser.set_path(new_path);
+    print!("\n  setting path to {:?}", new_path);
+    print!("\n  path     = {:?}", parser.path());
     let patts = parser.patterns();
     print!("\n  patts    = {:?}", patts);
     let opts = parser.options();

@@ -35,6 +35,7 @@ use std::fs::*;
 // options(&self) -> &HashMap<char, String>
 // path(&self) -> String
 // abs_path(&self) -> String
+// set_path(&self, p:&str)
 // patterns(&self) -> &Vec<String>
 // add_pattern(&mut self, p:&str)
 // help(&self) -> String
@@ -83,7 +84,7 @@ impl CmdLineParse {
             self.opt_map[&'P'].clone()
         }
         else {
-            "".to_string()
+            ".".to_string()
         }
     }
 
@@ -105,6 +106,12 @@ impl CmdLineParse {
             }
             Err(error) => error.to_string()
         }
+    }
+
+    pub fn set_path(&mut self, p:&str) {
+        self.opt_map.insert('P', p.to_string());
+        // let _ = self.opt_map.remove_entry(&'P');
+        // self.opt_map.insert('P', p.to_string());
     }
 
     pub fn contains_option(&self, opt:char) -> bool {
