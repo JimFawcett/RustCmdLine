@@ -13,6 +13,7 @@ fn main() {
 
     let mut parser = CmdLineParse::new();
     // let mut parser = CmdLineParse::default();
+    parser.default_options();
     print!("\n  {}\n",parser.help());
     parser.parse();
     print!("\n  path     = {:?}", parser.path());
@@ -23,8 +24,17 @@ fn main() {
     print!("\n  path     = {:?}", parser.path());
     let patts = parser.patterns();
     print!("\n  patts    = {:?}", patts);
+    print!("\n  regex    = {:?}", parser.get_regex());
     let opts = parser.options();
-    print!("\n  opts     = {:?}", opts);
+    print!("\n  opts     = {:#?}", opts);
+    print!("\n\n  adding option {{x,false}}");
+    parser.add_option('x', "false");
+    let opts = parser.options();
+    print!("\n  opts     = {:#?}", opts);
+    print!("\n\n  adding option {{x,true}}");
+    parser.add_option('x', "true");
+    let opts = parser.options();
+    print!("\n  opts     = {:#?}", opts);
 
     print!("\n\n  That's all Folks!\n\n")
 }
