@@ -22,6 +22,9 @@ fn main() {
     parser.set_path(new_path);
     print!("\n  setting path to {:?}", new_path);
     print!("\n  path     = {:?}", parser.path());
+    parser.add_pattern("rs");
+    parser.add_pattern("rs");
+    parser.add_pattern("exe");
     let patts = parser.patterns();
     print!("\n  patts    = {:?}", patts);
     print!("\n  regex    = {:?}", parser.get_regex());

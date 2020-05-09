@@ -152,7 +152,10 @@ impl CmdLineParse {
     }
     /*-- add file ext (with no *.) --*/
     pub fn add_pattern(&mut self, p:&str) -> &mut Self {
-        self.patterns.push(p.to_string());
+        let s = String::from(p);
+        if !self.patterns.contains(&s) {
+            self.patterns.push(s);
+        }
         self
     }
     /*-- non-mutable reference to patterns --*/
