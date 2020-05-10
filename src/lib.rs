@@ -98,8 +98,12 @@ impl CmdLineParse {
 
     /*-- replace Win directory separator with Linux separator --*/
     fn replace_sep(path: &str) -> String {
-        let rtn = path.to_string();
-        rtn.replace("\\", "/")
+        let mut rtn = path.to_string();
+        if rtn.contains("\\") {
+            rtn = rtn.replace("\\", "/");
+            rtn = rtn.chars().skip(4).collect();
+        }
+        rtn
     }
     /*-- convert relative to absolute path --*/
     pub fn abs_path(&self) -> String {
@@ -107,9 +111,10 @@ impl CmdLineParse {
         let rslt = canonicalize(&abs);
         match rslt {
             Ok(path_buf) => {
+                // print!("\n--path_buf = {:?}",path_buf);
                 let ap = path_buf.to_string_lossy().to_string();
                 let ap = CmdLineParse::replace_sep(&ap);
-                let ap:String = ap.chars().skip(4).collect();
+                // print!("\n--abs_path = {:?}",ap);
                 ap
             }
             Err(error) => error.to_string()
