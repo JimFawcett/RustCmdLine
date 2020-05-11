@@ -1,0 +1,37 @@
+  Command line arguments:
+  
+  Help:
+  Options: /P . /p "rs,txt" /s /r "abc" /H /h
+
+  path     = "."
+  abspath  = "C:/github/JimFawcett/RustCmdLine"
+  setting path to "C:/github/foo"
+  path     = "C:/github/foo"
+  patts    = ["rs", "exe"]
+  regex    = "."
+  opts     = {
+    'r': ".",
+    'H': "true",
+    's': "true",
+    'P': "C:/github/foo",
+}
+
+  adding option {x,false}
+  opts     = {
+    'x': "false",
+    'r': ".",
+    'H': "true",
+    's': "true",
+    'P': "C:/github/foo",
+}
+
+  adding option {x,true}
+  opts     = {
+    'x': "true",
+    'r': ".",
+    'H': "true",
+    's': "true",
+    'P': "C:/github/foo",
+}
+
+  That's all Folks!

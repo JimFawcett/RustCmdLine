@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////
+<pre>/////////////////////////////////////////////////////////////
 // rust_cmd_line::lib.rs                                   //
 //                                                         //
 // Jim Fawcett, https://JimFawcett.github.io, 19 Apr 2020  //
@@ -28,26 +28,26 @@ use std::fs::*;
 /////////////////////////////////////////////////////////////
 // CmdLineParse methods
 //-----------------------------------------------------------
-// new() -> CmdLineParse
-// parse(&self)
-// contains_option(&self, opt: char) -> bool
-// value(&self, char opt) -> &str
-// options(&self) -> &HashMap<char, String>
+// new() -&gt; CmdLineParse
+// parse(&amp;self)
+// contains_option(&amp;self, opt: char) -&gt; bool
+// value(&amp;self, char opt) -&gt; &amp;str
+// options(&amp;self) -&gt; &amp;HashMap&lt;char, String&gt;
 // - defaults are created with default_options():
 //   - /P "."    - root search path is current directory
 //   - /s "true" - recurse
 //   - /r "."    - match all text
 //   - /H "true" - hide unused directories
 //   - no patterns are equivalent to all files
-// path(&self) -> String
-// abs_path(&self) -> String
-// set_path(&self, p:&str)
-// patterns(&self) -> &Vec<String>
-// add_pattern(&mut self, p:&str) -> &mut self
-// set_regex(&mut self, re:&str)
-// get_regex(&self) -> &str
-// help(&self) -> String
-// replace_help(&mut self, &str) -> String
+// path(&amp;self) -&gt; String
+// abs_path(&amp;self) -&gt; String
+// set_path(&amp;self, p:&amp;str)
+// patterns(&amp;self) -&gt; &amp;Vec&lt;String&gt;
+// add_pattern(&amp;mut self, p:&amp;str) -&gt; &amp;mut self
+// set_regex(&amp;mut self, re:&amp;str)
+// get_regex(&amp;self) -&gt; &amp;str
+// help(&amp;self) -&gt; String
+// replace_help(&amp;mut self, &amp;str) -&gt; String
 
 /// display command line arguments
 pub fn show_cmd_line() {
@@ -57,8 +57,8 @@ pub fn show_cmd_line() {
     }
 }
 
-pub type Options = HashMap<char, String>;
-pub type CmdLinePatterns = Vec<String>;
+pub type Options = HashMap&lt;char, String&gt;;
+pub type CmdLinePatterns = Vec&lt;String&gt;;
 
 /// Parses command line into options and patterns
 #[derive(Debug, Default)]
@@ -69,7 +69,7 @@ pub struct CmdLineParse {
 }
 impl CmdLineParse {
     /// create new instance of parser
-    pub fn new() -> Self {
+    pub fn new() -&gt; Self {
         let help = CmdLineParse::help_txt();
         Self {
             opt_map: Options::default(),
@@ -78,21 +78,21 @@ impl CmdLineParse {
         }
     }
     /// returns string with command line arguments example
-    fn help_txt() -> String {
+    fn help_txt() -&gt; String {
         let mut str =
         "\n  Help:\n  Options: /P . /p \"rs,txt\"".to_string();  
         str.push_str(" /s /r \"abc\" /H /h"); 
         str
     }
     /// does the command line argument start with '/'
-    fn is_opt(&self, s:&str) -> bool {
+    fn is_opt(&amp;self, s:&amp;str) -&gt; bool {
         let bytes = s.as_bytes();
         bytes[0] as char == '/'
     }
     /// returns path string with default value "."
-    pub fn path(&self) -> String {
+    pub fn path(&amp;self) -&gt; String {
         if self.contains_option('P') {
-            self.opt_map[&'P'].clone()
+            self.opt_map[&amp;'P'].clone()
         }
         else {
             ".".to_string()
@@ -101,7 +101,7 @@ impl CmdLineParse {
 
     /// replace Win path separator "\\" with Linux "/"
     /// - use only with absolute paths for Windows 
-    fn replace_sep(path: &str) -> String {
+    fn replace_sep(path: &amp;str) -&gt; String {
         let mut rtn = path.to_string();
         if rtn.contains("\\") {
             rtn = rtn.replace("\\", "/");
@@ -110,90 +110,90 @@ impl CmdLineParse {
         rtn
     }
     /// convert relative to absolute path
-    pub fn abs_path(&self) -> String {
+    pub fn abs_path(&amp;self) -&gt; String {
         let abs = std::path::PathBuf::from(self.path());
-        let rslt = canonicalize(&abs);
+        let rslt = canonicalize(&amp;abs);
         match rslt {
-            Ok(path_buf) => {
+            Ok(path_buf) =&gt; {
                 // print!("\n--path_buf = {:?}",path_buf);
                 let ap = path_buf.to_string_lossy().to_string();
-                let ap = CmdLineParse::replace_sep(&ap);
+                let ap = CmdLineParse::replace_sep(&amp;ap);
                 // print!("\n--abs_path = {:?}",ap);
                 ap
             }
-            Err(error) => error.to_string()
+            Err(error) =&gt; error.to_string()
         }
     }
     /// set new root path
-    pub fn set_path(&mut self, p:&str) {
+    pub fn set_path(&amp;mut self, p:&amp;str) {
         self.opt_map.insert('P', p.to_string());
     }
     /// set new regex string for matching
-    pub fn set_regex(&mut self, re:&str) {
+    pub fn set_regex(&amp;mut self, re:&amp;str) {
         self.opt_map.insert('r', re.to_string());
     }
     /// return current regex string
-    pub fn get_regex(&self) -> &str {
-        let re_opt = self.opt_map.get(&'r');
+    pub fn get_regex(&amp;self) -&gt; &amp;str {
+        let re_opt = self.opt_map.get(&amp;'r');
         match re_opt {
-            Some(value) => value,
-            None => ".",
+            Some(value) =&gt; value,
+            None =&gt; ".",
         }
     }
     /// commonly used default options
-    pub fn default_options(&mut self) {
+    pub fn default_options(&amp;mut self) {
         self.opt_map.insert('P', ".".to_string());     // root is curr dir
         self.opt_map.insert('s', "true".to_string());  // recurse
         self.opt_map.insert('r', ".".to_string());     // regex always matches
         self.opt_map.insert('H', "true".to_string());  // hide unused dirs
     }
     /// does options contain opt char? 
-    pub fn contains_option(&self, opt:char) -> bool {
-        self.opt_map.contains_key(&opt)
+    pub fn contains_option(&amp;self, opt:char) -&gt; bool {
+        self.opt_map.contains_key(&amp;opt)
     }
     /// insert {o,v} if o key doesn't exist, else overwrite v
-    pub fn add_option(&mut self, o:char, v:&str) {
+    pub fn add_option(&amp;mut self, o:char, v:&amp;str) {
         self.opt_map.insert(o, v.to_string());
     }
     /// return option value
-    pub fn value(&self, opt:char) -> &str {
-        &self.opt_map[&opt]
+    pub fn value(&amp;self, opt:char) -&gt; &amp;str {
+        &amp;self.opt_map[&amp;opt]
     }
     /// add file ext (with no "*.")
-    pub fn add_pattern(&mut self, p:&str) -> &mut Self {
+    pub fn add_pattern(&amp;mut self, p:&amp;str) -&gt; &amp;mut Self {
         let s = String::from(p);
-        if !self.patterns.contains(&s) {
+        if !self.patterns.contains(&amp;s) {
             self.patterns.push(s);
         }
         self
     }
     /// returns non-mutable reference to patterns
-    pub fn patterns(&self) -> &CmdLinePatterns {
-        &self.patterns
+    pub fn patterns(&amp;self) -&gt; &amp;CmdLinePatterns {
+        &amp;self.patterns
     }
     /// returns non-mutable reference to options
-    pub fn options(& self) -> &Options {
-        &self.opt_map
+    pub fn options(&amp; self) -&gt; &amp;Options {
+        &amp;self.opt_map
     }
     /// return help string
-    pub fn help(&self) -> &str {
-        &self.help_str
+    pub fn help(&amp;self) -&gt; &amp;str {
+        &amp;self.help_str
     }
     /// replace help string
-    pub fn replace_help(&mut self, s:&str) {
+    pub fn replace_help(&amp;mut self, s:&amp;str) {
         self.help_str = s.to_string();
     }
     /// parse command line arguments, provided by env()
-    pub fn parse(&mut self) {
+    pub fn parse(&amp;mut self) {
     
-        let cl_args:Vec<String> = args().collect();
+        let cl_args:Vec&lt;String&gt; = args().collect();
         let end = cl_args.len();
         for i in 1..end {
-            if self.is_opt(&cl_args[i]) {
+            if self.is_opt(&amp;cl_args[i]) {
                 let bytes = cl_args[i].as_bytes();
                 let key = bytes[1] as char;
-                if i < end - 1 {
-                    if !self.is_opt(&cl_args[i+1]) {
+                if i &lt; end - 1 {
+                    if !self.is_opt(&amp;cl_args[i+1]) {
                         self.opt_map.insert(key,cl_args[i+1].to_string());
                     }
                     else {
@@ -230,8 +230,9 @@ mod tests {
         for arg in args() {
             let bytes = arg.as_bytes();
             if '/' == (bytes[0] as char) {
-                assert!(parser.opt_map.contains_key(&(bytes[1] as char)));
+                assert!(parser.opt_map.contains_key(&amp;(bytes[1] as char)));
             }
         }
     }
 }
+</pre>
