@@ -47,8 +47,8 @@ This repository contains a library with a single user-defined type: CmdLineParse
 
 CmdLineParser implements the following methods and functions:
 
-1 new() -> Self  
-&nbsp;  Create new `CmdLineParser` which has an options hashmap, patterns vector, and help string.
+1. new() -> Self  
+&nbsp;&nbsp;&nbsp;&nbsp;Create new `CmdLineParser` which has an options hashmap, patterns vector, and help string.
 
 2\. \*\*`parse(\&self)`\*\*  
 
