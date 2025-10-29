@@ -13,7 +13,6 @@
 ![RustCmdLine code on GitHub](https://github.com/JimFawcett/RustCmdLine)
 
 
-
 \## Quick Status
 
 
@@ -47,6 +46,8 @@
 ![CmdLineParser Output](Pictures/RustCmdLineParserOutput.JPG)
 
 \*Figure 1. CmdLineParser Output\*
+
+<img src="Pictures/RustCmdLineParserOutput.JPG" width="300">
 
 
 
