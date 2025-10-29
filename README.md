@@ -43,11 +43,11 @@
 
 
 
-![CmdLineParser Output](Pictures/RustCmdLineParserOutput.JPG)
+<!-- ![CmdLineParser Output](Pictures/RustCmdLineParserOutput.JPG) -->
 
 \*Figure 1. CmdLineParser Output\*
 
-<img src="Pictures/RustCmdLineParserOutput.JPG" width="300">
+<img src="Pictures/RustCmdLineParserOutput.JPG" width="600">
 
 
 
