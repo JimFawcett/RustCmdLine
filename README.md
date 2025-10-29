@@ -86,7 +86,7 @@ CmdLineParser implements the following methods and functions:
 13. patterns(&self) -> &CmdLinePatterns  
 &nbsp;&nbsp;Returns reference to vector of patterns.
 
-14, options(&self) -> &Options  
+14. options(&self) -> &Options  
 &nbsp;&nbsp;Returns reference to hashmap of options.
 
 15. help(&self) -> &str  
