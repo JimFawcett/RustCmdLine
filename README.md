@@ -44,7 +44,7 @@
 
 
 
-!\[CmdLineParser Output](Pictures/RustCmdLineParserOutput.JPG)
+![CmdLineParser Output](Pictures/RustCmdLineParserOutput.JPG)
 
 \*Figure 1. CmdLineParser Output\*
 
