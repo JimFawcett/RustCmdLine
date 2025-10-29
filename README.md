@@ -25,25 +25,18 @@ Last Modified: 11/25/2022
 * Fgure 1. CmdLineParser Output
 <img src="Pictures/RustCmdLineParserOutput.JPG" width="600">
 
+
 RustCmdLine is a facility for parsing command line arguments. Here's a sample:
 ```
-
 /P "." /p "rs,txt" /s /H /r "abc"
-
 ```
 where:
 ```
-
 /P "."          - path
-
 /p "rs,txt"     - file patterns
-
 /s              - recurse through directory tree rooted at path
-
 /H              - hide directories that don't contain target files
-
 /r "abc"        - regular expression
-
 ```
 
 The intent is that a program creates an instance of CmdLineParser, uses that to parse its command line, then passes it to any code that needs to know about an option.
@@ -54,8 +47,7 @@ This repository contains a library with a single user-defined type: CmdLineParse
 
 CmdLineParser implements the following methods and functions:
 
-1\. \*\*`new() -> Self`\*\*  
-
+1 new() -> Self  
 &nbsp;  Create new `CmdLineParser` which has an options hashmap, patterns vector, and help string.
 
 2\. \*\*`parse(\&self)`\*\*  
