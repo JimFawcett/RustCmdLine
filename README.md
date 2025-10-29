@@ -1,8 +1,6 @@
-\# RustCmdLine Repository
+# RustCmdLine Repository
 
-
-
-\*\*Parse console command line arguments\*\*
+##Parse console command line arguments
 
 
 
