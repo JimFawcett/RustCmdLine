@@ -10,7 +10,7 @@
 
 
 
-\[RustCmdLine code on GitHub](https://github.com/JimFawcett/RustCmdLine)
+![RustCmdLine code on GitHub](https://github.com/JimFawcett/RustCmdLine)
 
 
 
