@@ -48,67 +48,52 @@ This repository contains a library with a single user-defined type: CmdLineParse
 CmdLineParser implements the following methods and functions:
 
 1. new() -> Self  
-&nbsp;&nbsp;&nbsp;&nbsp;Create new `CmdLineParser` which has an options hashmap, patterns vector, and help string.
+&nbsp;&nbsp;Create new `CmdLineParser` which has an options hashmap, patterns vector, and help string.
 
-2\. \*\*`parse(\&self)`\*\*  
+2. parse(&self)  
+&nbsp;&nbsp;Builds internal options hashmap and patterns vector.
 
-&nbsp;  Builds internal options hashmap and patterns vector.
+3. path(&self) -> String  
+&nbsp;&nbsp;Return value of relative root path, held in options map.
 
-3\. \*\*`path(\&self) -> String`\*\*  
+4. abs_path(&self) -> String
+&nbsp;&nbsp;Return value of absolute root path, from canonicalized relative path.
 
-&nbsp;  Return value of relative root path, held in options map.
+5. set_path(&mut self, p:&str)  
+&nbsp;&nbsp;Replaces value of root path, held in options map.
 
-4\. \*\*`abs\_path(\&self) -> String`\*\*  
+6. set_regex(&mut self, re:&str)  
+&nbsp;&nbsp;Replaces value of regex string, held in options map.
 
-&nbsp;  Return value of absolute root path, from canonicalized relative path.
+7. get_regex(&mut self) -> &str
+&nbsp;&nbsp;Retrieves value of regex string, held in options map.
 
-5\. \*\*`set\_path(\&mut self, p:\&str)`\*\*  
+8. default_options(&mut self)  
+&nbsp;&nbsp;Sets values of some of the options in options map.
 
-&nbsp;  Replaces value of root path, held in options map.
+9. contains_option(&self, opt:char) -> bool
+&nbsp;&nbsp;Returns true if options map contains key opt, else returns false.
 
-6\. \*\*`set\_regex(\&mut self, re:\&str)`\*\*  
+10. add_option(&mut self, opt:char, val:&str)
+&nbsp;&nbsp;Inserts option in options hashmap, adding key if it does not exist, else overriding previous value.
 
-&nbsp;  Replaces value of regex string, held in options map.
+11. value(&self, opt:char) -> &str  
+&nbsp;&nbsp;Inserts option in options hashmap, adding key if it does not exist, else overriding previous value.
 
-7\. \*\*`get\_regex(\&mut self) -> \&str`\*\*  
+12. add_pattern(&mut self, patt:&str) -> &mut self
+&nbsp;&nbsp;Inserts patt into patterns vector. Method can be chained.
 
-&nbsp;  Retrieves value of regex string, held in options map.
+13. patterns(&self) -> &CmdLinePatterns  
+&nbsp;&nbsp;Returns reference to vector of patterns.
 
-8\. \*\*`default\_options(\&mut self)`\*\*  
+14, options(&self) -> &Options  
+&nbsp;&nbsp;Returns reference to hashmap of options.
 
-&nbsp;  Sets values of some of the options in options map.
+15. help(&self) -> &str  
+&nbsp;&nbsp;Returns default help string.
 
-9\. \*\*`contains\_option(\&self, opt:char) -> bool`\*\*  
-
-&nbsp;  Returns true if options map contains key opt, else returns false.
-
-10\. \*\*`add\_option(\&mut self, opt:char, val:\&str)`\*\*  
-
-&nbsp;   Inserts option in options hashmap, adding key if it does not exist, else overriding previous value.
-
-11\. \*\*`value(\&self, opt:char) -> \&str`\*\*  
-
-&nbsp;   Inserts option in options hashmap, adding key if it does not exist, else overriding previous value.
-
-12\. \*\*`add\_pattern(\&mut self, patt:\&str) -> \&mut self`\*\*  
-
-&nbsp;   Inserts patt into patterns vector. Method can be chained.
-
-13\. \*\*`patterns(\&self) -> \&CmdLinePatterns`\*\*  
-
-&nbsp;   Returns reference to vector of patterns.
-
-14\. \*\*`options(\&self) -> \&Options`\*\*  
-
-&nbsp;   Returns reference to hashmap of options.
-
-15\. \*\*`help(\&self) -> \&str`\*\*  
-
-&nbsp;   Returns default help string.
-
-16\. \*\*`replace\_help(\&mut self, hs:\&str)`\*\*  
-
-&nbsp;   Replace internal help string.
+16. replace_help(&mut self, hs:&str)  
+&nbsp;&nbsp;Replace internal help string.
 
 
 ## Operation
@@ -121,7 +106,7 @@ See Test1.rs in examples folder for typical usage.
 Download and, in a command prompt, `cargo build` or `cargo run`.
 
 
-\## Status
+## Status
 
 This is version 1.1.0  
 
