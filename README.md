@@ -44,7 +44,7 @@
 
 
 
-!\[CmdLineParser Output](../JimFawcett.github.io/Pictures/RustCmdLineParserOutput.JPG)
+!\[CmdLineParser Output](https://raw.githubusercontent.com/JimFawcett/JimFawcett.github.io/main/Pictures/RustCmdLineParserOutput.JPG)
 
 \*Figure 1. CmdLineParser Output\*
 
